@@ -14,34 +14,60 @@ import TextField from "../../components/form";
 import Button from "../../components/button";
 import ButtonComponent from "../../components/button";
 import { useDispatch } from "react-redux";
-import { login, signUpUser } from "../../redux/slice/authSlice";
+import { addUser, login, signUpUser } from "../../redux/slice/authSlice";
+import { apiClient } from "../../api/instance";
 
 const SignUp = () => {
   const [loginCheck, setLoginCheck] = useState(false);
   const [signupEmailOrPhone, setSignupEmailOrPhone] = useState("");
+  const [signupUsername, setSignupUsername] = useState("");
   const [signupPassword, setSignupPassword] = useState("");
-  const [signupConfirmPassword, setSignupConfirmPassword] = useState("");
-  const [loginEmailOrPhone, setLoginEmailOrPhone] = useState("");
+  const [loginUsername, setLoginUsername] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   const dispatch = useDispatch();
 
-  const handleSignup = () => {
+  const handleSignup = async () => {
     const metaData = {
-      signupEmailOrPhone,
-      signupPassword,
-      signupConfirmPassword,
+      email: signupEmailOrPhone,
+      username: signupUsername,
+      password: signupPassword,
     };
-    console.log(metaData)
-    dispatch(signUpUser(metaData))
+    console.log(metaData);
+    dispatch(signUpUser(metaData));
+    // try {
+    //   const headers = {
+    //     "Content-Type": "application/json",
+    //   };
+    //   const result = await apiClient.post(
+    //     "/api/auth/local/register",
+    //     metaData,
+    //     headers
+    //   );
+    //   console.log("Result -> ", result);
+    //   alert("Success");
+    // } catch (error) {
+    //   alert("Something went wrong, Please try again!", error);
+    // }
   };
-  const handleLogin = () => {
+  const handleLogin = async () => {
     const metaData = {
-      loginEmailOrPhone, loginPassword
-    }
-    console.log(metaData)
-    dispatch(login(metaData))
+      identifier: loginUsername,
+      password: loginPassword,
+    };
+    console.log(metaData);
+    dispatch(login(metaData));
+    // try {
+    //   const headers = {
+    //     "Content-Type": "application/json",
+    //   };
+    //   const result = await apiClient.post("/api/auth/local", metaData, headers);
+    //   console.log("Result -> ", result);
+    //   dispatch(addUser({ user: user, token: "" }));
+    //   alert("Success");
+    // } catch (error) {
+    //   alert("Something went wrong, Please try again!", error);
+    // }
   };
-
 
   return (
     <>
@@ -70,22 +96,22 @@ const SignUp = () => {
                     onChange={(e) => setSignupEmailOrPhone(e.target.value)}
                   />
                   <TextField
+                    value="Username"
+                    type="text"
+                    onChange={(e) => setSignupUsername(e.target.value)}
+                  />
+                  <TextField
                     value="Password"
                     type="password"
                     onChange={(e) => setSignupPassword(e.target.value)}
-                  />
-                  <TextField
-                    value="Confirm Password"
-                    type="password"
-                    onChange={(e) => setSignupConfirmPassword(e.target.value)}
                   />
                 </>
               ) : (
                 <>
                   <TextField
-                    value="Email or Phone"
-                    type={"email" || "number"}
-                    onChange={(e) => setLoginEmailOrPhone(e.target.value)}
+                    value="Username"
+                    type="text"
+                    onChange={(e) => setLoginUsername(e.target.value)}
                   />
                   <TextField
                     value="Password"
