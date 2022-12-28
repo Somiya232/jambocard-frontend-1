@@ -5,6 +5,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import Head from "next/head";
 // import manifest from "../public/manifest.json"
 
+
 export default function App({ Component, pageProps }) {
   return (
     <>
