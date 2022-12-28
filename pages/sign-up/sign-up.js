@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+// import "../../components/button/signup.css"
 import {
   Card,
   CardHeader,
@@ -14,8 +15,15 @@ import TextField from "../../components/form";
 import Button from "../../components/button";
 import ButtonComponent from "../../components/button";
 import { useDispatch } from "react-redux";
-import { addUser, login, signUpUser } from "../../redux/slice/authSlice";
+import {
+  addToken,
+  addUser,
+  login,
+  signUpUser,
+} from "../../redux/slice/authSlice";
 import { apiClient } from "../../api/instance";
+import { Toaster } from "react-hot-toast";
+import loginBg from "../../public/images/login-bg.webp";
 
 const SignUp = () => {
   const [loginCheck, setLoginCheck] = useState(false);
@@ -24,6 +32,7 @@ const SignUp = () => {
   const [signupPassword, setSignupPassword] = useState("");
   const [loginUsername, setLoginUsername] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
+  const [version, setVersion] = useState(0);
   const dispatch = useDispatch();
 
   const handleSignup = async () => {
@@ -34,21 +43,8 @@ const SignUp = () => {
     };
     console.log(metaData);
     dispatch(signUpUser(metaData));
-    // try {
-    //   const headers = {
-    //     "Content-Type": "application/json",
-    //   };
-    //   const result = await apiClient.post(
-    //     "/api/auth/local/register",
-    //     metaData,
-    //     headers
-    //   );
-    //   console.log("Result -> ", result);
-    //   alert("Success");
-    // } catch (error) {
-    //   alert("Something went wrong, Please try again!", error);
-    // }
   };
+
   const handleLogin = async () => {
     const metaData = {
       identifier: loginUsername,
@@ -56,28 +52,21 @@ const SignUp = () => {
     };
     console.log(metaData);
     dispatch(login(metaData));
-    // try {
-    //   const headers = {
-    //     "Content-Type": "application/json",
-    //   };
-    //   const result = await apiClient.post("/api/auth/local", metaData, headers);
-    //   console.log("Result -> ", result);
-    //   dispatch(addUser({ user: user, token: "" }));
-    //   alert("Success");
-    // } catch (error) {
-    //   alert("Something went wrong, Please try again!", error);
-    // }
+    dispatch(addToken());
+    dispatch(addUser());
   };
 
   return (
     <>
+      <Toaster />
       <Box
         display="flex"
         justifyContent="center"
         alignItems="center"
-        pt={"10rem"}
+        pt={"3rem"}
+        style={{ backgroundImage: `url(${loginBg.src})`, width: "100%", height: "100vh", backgroundRepeat:"no-repeat", backgroundSize:"cover"  }}
       >
-        <Card width={"40%"}>
+        <Card width={"40%"} backgroundColor="white">
           <CardBody>
             <Stack spacing={3} pb={"1rem"}>
               {loginCheck === false ? (
@@ -91,19 +80,22 @@ const SignUp = () => {
               {loginCheck === false ? (
                 <>
                   <TextField
-                    value="Email or Phone"
-                    type={"email" || "number"}
+                    value="Email Id"
+                    type={"email"}
                     onChange={(e) => setSignupEmailOrPhone(e.target.value)}
+                    placeholder={"Enter your email"}
                   />
                   <TextField
                     value="Username"
                     type="text"
                     onChange={(e) => setSignupUsername(e.target.value)}
+                    placeholder={"Create a username"}
                   />
                   <TextField
                     value="Password"
                     type="password"
                     onChange={(e) => setSignupPassword(e.target.value)}
+                    placeholder={"Create a password"}
                   />
                 </>
               ) : (
@@ -112,11 +104,13 @@ const SignUp = () => {
                     value="Username"
                     type="text"
                     onChange={(e) => setLoginUsername(e.target.value)}
+                    placeholder={"Type your username"}
                   />
                   <TextField
                     value="Password"
                     type="password"
                     onChange={(e) => setLoginPassword(e.target.value)}
+                    placeholder={"Type your password"}
                   />
                 </>
               )}
