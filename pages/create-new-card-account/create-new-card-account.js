@@ -6,8 +6,8 @@ import { Toaster } from "react-hot-toast";
 const CreateNewCardAccount = () => {
   return (
     <>
-    <Toaster />
-      <Container >
+      <Toaster />
+      <Container>
         <Box pt={"3rem"}>
           <Text fontSize="4xl" fontWeight={"bold"}>
             {" "}
