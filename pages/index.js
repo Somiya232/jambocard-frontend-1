@@ -1,8 +1,10 @@
 import React from "react";
-import { Toaster } from "react-hot-toast";
+import { toast, Toaster } from "react-hot-toast";
+import { useSelector } from "react-redux";
 import SignUp from "./sign-up/sign-up";
 // import "../styles/signup.css"
 const index = () => {
+  
   return (
     <>
       <Toaster />
