@@ -8,12 +8,6 @@ import { addToken, addUser } from "../redux/slice/authSlice";
 // import manifest from "../public/manifest.json"
 
 export default function App({ Component, pageProps }) {
-  useEffect(() => {
-    // if(localStorage.ite)
-    addToken();
-    addUser();
-  }, []);
-
   return (
     <>
       <Head>
