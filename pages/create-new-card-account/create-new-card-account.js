@@ -1,10 +1,19 @@
 import React from "react";
-import { Box, Container, Text, Select, Checkbox } from "@chakra-ui/react";
+import {
+  Box,
+  Container,
+  Text,
+  Select,
+  Checkbox,
+  Divider,
+  VStack,
+} from "@chakra-ui/react";
 import TextField from "../../components/form";
 import ButtonComponent from "../../components/button";
 import { toast, Toaster } from "react-hot-toast";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/router";
+import { Stepper } from "../../components/stepper";
 const CreateNewCardAccount = () => {
   const router = useRouter();
   const handleSignOut = () => {
@@ -13,9 +22,22 @@ const CreateNewCardAccount = () => {
     signOut();
     router.push("/");
   };
+
+  const handleNavigate = () => {
+    router.push("/profile-card/profile-card")
+  }
   return (
     <>
       <Toaster />
+      <VStack
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        pt={"3rem"}
+      >
+        <Stepper data={{ createAccount: true, createCard: false }} />
+        <Divider />
+      </VStack>
       <Container>
         <Box pt={"3rem"}>
           <Text fontSize="4xl" fontWeight={"bold"}>
@@ -41,7 +63,7 @@ const CreateNewCardAccount = () => {
               Accept terms and conditions{" "}
             </Text>{" "}
           </Checkbox>
-          <ButtonComponent value={"Create Account"} colorScheme={"blue"} />
+          <ButtonComponent onClick={handleNavigate} value={"Create Account"} colorScheme={"blue"} />
           <ButtonComponent
             value={"Logout"}
             onClick={handleSignOut}
