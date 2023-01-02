@@ -1,12 +1,15 @@
-import { Avatar, Box, Container, Text } from "@chakra-ui/react";
+import { Avatar, Box, Container, Text, Divider } from "@chakra-ui/react";
 import React, { useState } from "react";
 import ButtonComponent from "../../components/button";
 import TextField from "../../components/form";
+import { Stepper } from "../../components/stepper";
 
 const SetProfile = () => {
   return (
     <>
-      <Container >
+      <Container mt='10px'>
+      <Stepper data={{createAccount: true, createCard: true}} />
+      <Divider />
         <Box pt={"3rem"}>
           <Text fontSize="4xl" fontWeight={"bold"}>
             {" "}
