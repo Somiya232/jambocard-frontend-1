@@ -1,15 +1,10 @@
 import React from "react";
 import {
-    Card,
     Image,
-    CardBody,
-    CardFooter,
     Text,
     Box,
     VStack,
-    HStack,
-    Link,
-    Button,
+    HStack
   } from "@chakra-ui/react";
 
 const ProfileCard = () => {
