@@ -1,4 +1,4 @@
-import { Avatar, Box, Container, Text, Divider } from "@chakra-ui/react";
+import { Avatar, Box, Container, Text, Divider, VStack } from "@chakra-ui/react";
 import React, { useState } from "react";
 import ButtonComponent from "../../components/button";
 import TextField from "../../components/form";
@@ -7,9 +7,16 @@ import { Stepper } from "../../components/stepper";
 const SetProfile = () => {
   return (
     <>
-      <Container mt='10px'>
-      <Stepper data={{createAccount: true, createCard: true}} />
-      <Divider />
+      <VStack
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        pt={"3rem"}
+      >
+        <Stepper data={{ createAccount: false, createCard: true }} />
+        <Divider />
+      </VStack>
+      <Container mt="10px">
         <Box pt={"3rem"}>
           <Text fontSize="4xl" fontWeight={"bold"}>
             {" "}
@@ -20,19 +27,25 @@ const SetProfile = () => {
             Free Card{" "}
           </Text>
         </Box>
-        <Box pt={"2rem"} display="flex" alignItems={"center"} justifyContent="space-evenly" >
-          <Box  display="flex" flexDirection="column" alignItems={"center"} >
-          <Avatar size={"2xl"} />
-          <Text>Upload Profile</Text>
+        <Box
+          pt={"2rem"}
+          display="flex"
+          alignItems={"center"}
+          justifyContent="space-evenly"
+        >
+          <Box display="flex" flexDirection="column" alignItems={"center"}>
+            <Avatar size={"2xl"} />
+            <Text>Upload Profile</Text>
           </Box>
           <Box display="flex" flexDirection="column" alignItems={"center"}>
-          <Avatar size={"2xl"}/>
-          <Text>Upload Profile</Text></Box>
+            <Avatar size={"2xl"} />
+            <Text>Upload Profile</Text>
+          </Box>
         </Box>
         <Box pt={"2rem"} display="flex" flexDirection="column" gap={2}>
-          <TextField placeholder={"Name"}/>
-          <TextField placeholder={"Work Title"}/>
-          <TextField placeholder={"WhatsApp Number"}/>
+          <TextField placeholder={"Name"} />
+          <TextField placeholder={"Work Title"} />
+          <TextField placeholder={"WhatsApp Number"} />
           <ButtonComponent value={"Create Account"} colorScheme={"blue"} />
         </Box>
       </Container>
