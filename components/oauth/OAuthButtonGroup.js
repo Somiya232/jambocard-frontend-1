@@ -26,7 +26,13 @@ const googleSignupHandler = () => {
     toast(error);
   }
 };
-const facebookSignupHandler = () => {};
+const facebookSignupHandler = () => {
+  try {
+    signIn();
+  } catch (error) {
+    toast(error);
+  }
+};
 
 export const OAuthButtonGroup = () => {
   const router = useRouter();

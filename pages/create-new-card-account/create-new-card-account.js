@@ -2,8 +2,17 @@ import React from "react";
 import { Box, Container, Text, Select, Checkbox } from "@chakra-ui/react";
 import TextField from "../../components/form";
 import ButtonComponent from "../../components/button";
-import { Toaster } from "react-hot-toast";
+import { toast, Toaster } from "react-hot-toast";
+import { signOut } from "next-auth/react";
+import { useRouter } from "next/router";
 const CreateNewCardAccount = () => {
+  const router = useRouter();
+  const handleSignOut = () => {
+    toast("Button Clicked");
+    localStorage.clear();
+    signOut();
+    router.push("/");
+  };
   return (
     <>
       <Toaster />
@@ -33,6 +42,11 @@ const CreateNewCardAccount = () => {
             </Text>{" "}
           </Checkbox>
           <ButtonComponent value={"Create Account"} colorScheme={"blue"} />
+          <ButtonComponent
+            value={"Logout"}
+            onClick={handleSignOut}
+            colorScheme={"blue"}
+          />
         </Box>
       </Container>
     </>
