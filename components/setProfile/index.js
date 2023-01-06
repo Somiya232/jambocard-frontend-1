@@ -1,44 +1,24 @@
-import { Avatar, Box, Container, Text, Divider, VStack } from "@chakra-ui/react";
+import { Avatar, Box, Container, Text } from "@chakra-ui/react";
 import React, { useState } from "react";
 import ButtonComponent from "../../components/button";
 import TextField from "../../components/form";
-import { Stepper } from "../../components/stepper";
 
 const SetProfile = () => {
   return (
     <>
-      <VStack
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        pt={"3rem"}
-      >
-        <Stepper data={{ createAccount: false, createCard: true }} />
-        <Divider />
-      </VStack>
       <Container mt="10px">
-        <Box pt={"3rem"}>
-          <Text fontSize="4xl" fontWeight={"bold"}>
-            {" "}
-            Set Profile{" "}
-          </Text>
-          <Text fontSize="sm" opacity={"0.5"}>
-            {" "}
-            Free Card{" "}
-          </Text>
-        </Box>
-        <Box
+      <Box
           pt={"2rem"}
           display="flex"
           alignItems={"center"}
           justifyContent="space-evenly"
         >
           <Box display="flex" flexDirection="column" alignItems={"center"}>
-            <Avatar size={"2xl"} />
+            <Avatar size={"2xl"} bg='red.500'/>
             <Text>Upload Profile</Text>
           </Box>
           <Box display="flex" flexDirection="column" alignItems={"center"}>
-            <Avatar size={"2xl"} />
+            <Avatar size={"2xl"} bg='red.500' />
             <Text>Upload Profile</Text>
           </Box>
         </Box>
@@ -46,7 +26,8 @@ const SetProfile = () => {
           <TextField placeholder={"Name"} />
           <TextField placeholder={"Work Title"} />
           <TextField placeholder={"WhatsApp Number"} />
-          <ButtonComponent value={"Create Account"} colorScheme={"blue"} />
+          <ButtonComponent value={"Preview Card"} />
+          <ButtonComponent value={"Save Card"} colorScheme={"blue"} />
         </Box>
       </Container>
     </>
