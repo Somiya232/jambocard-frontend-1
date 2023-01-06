@@ -7,7 +7,7 @@ import {
     HStack
   } from "@chakra-ui/react";
 
-const ProfileCard = () => {
+export const ProfileCard = () => {
   return (
     <>
     <Box display='flex' alignItems='center' borderWidth='1px' borderRadius='lg' borderColor={'lightgrey'}>
@@ -22,5 +22,3 @@ const ProfileCard = () => {
     </>
   );
 };
-
-export default ProfileCard;
